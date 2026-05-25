@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head><base target="_top"></head>
+<body>
+<div style="font-family:Arial,sans-serif;font-size:14px;color:#333;">
+
+  <p style="font-family:Calibri,sans-serif;font-size:14px;"><b>您好，<br><br>
+  感謝您一直以來對 demoCompany 的支持與信任。<br>
+  我們希望通知您關於我們在續約文件上的一項改變。為了提高效率和方便性，我們決定將續約文件的流程轉換為電子郵件方式。<br>
+  在這封信件中，我們將比照原方案提供續約內容，並且這封信件的內容就是您與 demoCompany 的續約文件。<br><br>
+  請知曉，<span style="color:red;">您只需回覆「同意」此郵件表示您同意續約</span>，我們將視為續約成功。</b></p>
+
+  <br><br>
+  <center><b><span style="font-family:Arial,sans-serif;font-size:21px;">demoCompany Apps 軟體系統租賃合約書續約增補協議</span></b></center>
+  <br>
+
+  <div style="font-family:Arial,sans-serif;font-size:12px;line-height:1.6;">
+    <p>緣 demoCompany（下稱「甲方」）與　<?= contract.name ?> （下稱「乙方」）雙方於 <?= contract.oStartYear ?>年簽訂「demoCompany Apps 軟體系統租賃合約書」(以下簡稱「原合約」)，由甲方出租標的物予<?= contract.name ?>，並授權乙方於租賃期內於使用店家非專屬性地使用標的物之權利，而原合約之期間將於 <?= contract.oEndDate ?> 期滿。</p>
+    <p>甲方特此通知乙方，若乙方於原合約期限屆至後繼續使用 demoCompany Apps 軟體系統服務，即視同雙方協議並同意續約。</p>
+
+    <ol style="margin:20px 0;padding-left:20px;">
+      <li style="margin-bottom:20px;">
+        甲乙雙方同意新合約期間為 <b><?= contract.nStartDate ?>至<?= contract.nEndDate ?></b>，限於乙方之
+        <span style="font-weight:bold;background-color:#FFDDAA;"><?= contract.resto ?></span>
+        （共<?= contract.place ?>處，以下各稱為「使用店家」），使用demoCompany提供之系統服務。
+        若服務期滿60日前，甲乙任一方未以書面通知他方終止本合約或要求另訂新約，雙方同意依本合約內自動續約12個月，不另訂新約，其後亦同。
+      </li>
+
+      <li style="margin-bottom:20px;">
+        方案內容：<br>
+        <blockquote>
+          ●&nbsp;&nbsp;方案內容：<?= contract.term ?>繳方案<br>
+          ●&nbsp;&nbsp;使用組數/<?= contract.term ?>：<?= contract.usage ?> 組<? if (contract.gift) { ?>（＋贈送組數 <?= contract.gift ?> 組/年）<? } ?><br>
+          ●&nbsp;&nbsp;系統使用費/<?= contract.term ?>：新台幣$<?= Number(contract.fee).toLocaleString() ?>元（含稅）<br>
+          ●&nbsp;&nbsp;超額計費方式：新台幣$<?= contract.overage ?>元/筆（含稅）<br>
+          <? if (specialPlan.text) { ?><?!= specialPlan.text ?><? } ?>
+        </blockquote>
+      </li>
+
+      <li style="margin-bottom:20px;">
+        加值服務：<? if (addon.depositText || addon.surveyText || addon.voiceText || addon.couponText) { ?>
+          <div style="margin-top:8px; line-height: 1.5;">
+            <? if (addon.depositText) { ?>
+              <div style="margin-bottom: 10px;">
+                <div><?!= addon.depositText ?></div>
+                <? if (addon.cardPolicy) { ?><div style="margin-top: 10px;"><?!= addon.cardPolicy ?></div><? } ?>
+                <? if (addon.refundRule) { ?><div style="margin-top: 10px;"><?!= addon.refundRule ?></div><? } ?>
+                <? if (addon.b2cNotice)  { ?><div style="margin-top: 10px;"><?!= addon.b2cNotice ?></div><? } ?>
+              </div>
+            <? } ?>
+            
+            <? if (addon.surveyText) { ?>
+              <div style="margin-top: 15px; margin-bottom: 10px;"><?!= addon.surveyText ?></div>
+            <? } ?>
+            
+            <? if (addon.voiceText) { ?>
+              <div style="margin-top: 15px; margin-bottom: 10px;"><?!= addon.voiceText ?></div>
+            <? } ?>
+            
+            <? if (addon.couponText) { ?>
+              <div style="margin-top: 15px; margin-bottom: 10px;"><?!= addon.couponText ?></div>
+            <? } ?>
+          </div>
+        <? } else { ?>
+          無
+        <? } ?>
+      </li>
+
+      <li style="margin-bottom:20px;">
+        繳款方式
+        <div style="margin-top:10px; padding-left:10px; border-left:3px solid #ccc; line-height: 1.6;">
+          
+          <? if (contract.payment) { ?>
+            ●&nbsp;&nbsp;年繳：<span style="font-weight:bold;background-color:#FFDDAA;"><?= contract.payment ?></span>
+            <? if (addon.monthlyTotal > 0) { ?>
+              &nbsp;&nbsp;月繳：<span style="font-weight:bold;background-color:#FFDDAA;">乙方應按月支付新台幣 <?= Number(addon.monthlyTotal).toLocaleString() ?> 元。</span>
+            <? } ?>
+            &nbsp;&nbsp;超額訂位/候位用量及加值服務：訂候位預繳組數使用完畢後甲方應於次月10號前計算超額訂位/候位用量，並逐月提供月報表與發票予乙方請款。<br>
+          <? } ?>
+
+          <? if (!contract.payment) { ?>
+            ●&nbsp;&nbsp;月繳：超額訂位/候位用量及加值服務：訂候位預繳組數使用完畢後甲方應於次月10號前計算超額訂位/候位用量，並逐月提供月報表與發票予乙方請款。<br>
+          <? } ?>
+
+          <? if (addonTable) { ?>
+            <div style="margin: 5px 0 15px 0;"><?!= addonTable ?></div>
+          <? } ?>
+
+          ●&nbsp;&nbsp;乙方需依甲方之指示完成付款：
+          <div style="margin-top: 5px; margin-bottom: 15px; padding-left: 12px;"><?!= paymentTerm.text ?></div>
+
+          ●&nbsp;&nbsp;乙方同意應於前項發票開立日之當月內依甲方提供之支付方式付清款項。若款項逾期未繳，甲方得逕行停止提供標的物與相關產品及服務，並逕行終止本合約。
+          
+        </div>
+      </li>
+
+      <li style="margin-bottom:15px;">除前條所述之內容外，其餘本通知書未盡之事項，以原合約條款之規定辦理。</li>
+      <li style="margin-bottom:15px;">乙方如未於接獲本通知書七日內書面向樂排表明拒絕續約或未為回覆，前述於原合約之展延內容自原期限屆滿次日起立即生效。</li>
+    </ol>
+
+    立協議書人<br><br>
+    甲方<br>
+    公司抬頭：demoCompany<br>
+    統一編號：XXXXXX<br>
+    客戶經理：<?= contract.amName ?><br><br><br>
+    乙方<br>
+    公司抬頭：<?= contract.name ?><br>
+    統一編號：<?= contract.taxId ?><br>
+  </div>
+
+  <br><br><br>
+  Best Regards,<br>
+  <?= contract.amName ?><br>
+  <?= contract.amTitle ?><br>
+  Contact：<?= contract.amPhone ?><br>
+  Email：<?= contract.amMail ?><br>
+  Add：address
+</div>
+</body>
+</html>
+
